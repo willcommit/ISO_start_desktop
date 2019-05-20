@@ -1,0 +1,32 @@
+{
+  "name": "iso_start_desktop",
+  "version": "1.0.0",
+  "description": "ISO documentation application ",
+  "main": "./index.js",
+  "scripts": {
+    "electron": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "author": "Loxodromic",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.15.0"
+  },
+  "build": {
+    "appId": "ISO Start",
+    "win": {
+      "target": "msi",
+      "icon": "resources/images/icon.ico"
+    },
+    "extraResources": [
+      "./resources/public/**"
+    ]
+  },
+  "devDependencies": {
+    "electron-builder": "^20.40.2",
+    "electron": "^5.0.1"
+  }
+}
