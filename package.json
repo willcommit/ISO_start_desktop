@@ -1,5 +1,6 @@
 {
   "name": "iso_start_desktop",
+  "productName": "ISO Start",
   "version": "1.0.0",
   "description": "ISO documentation application ",
   "main": "./index.js",
@@ -18,11 +19,10 @@
   "build": {
     "appId": "ISO Start",
     "win": {
-      "target": "msi",
-      "icon": "resources/images/icon.ico"
+      "target": "nsis",
+      "icon": "resources/images/icon.png"
     },
     "extraResources": [
-      "./resources/public/**"
     ]
   },
   "devDependencies": {
