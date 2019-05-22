@@ -155,7 +155,6 @@
 
     <!--PDF UPLOADER-->
     <div class="upploader">
-        <h3 id="activeFile"></h3>
         <form id="fileReplace" class="custom-file" lang="se">
             <input type="file" class="custom-file-input" id="customFile" accept=".pdf">
             <label class="custom-file-label" for="customFile"> Select new PDF file</label>
@@ -166,29 +165,6 @@
     <script>
     const populateFiles = require("./resources/js/populateFiles.js");
     populateFiles.populate();
-    </script>
-
-    <script>
-        const settingsHandler = require("./resources/js/settingsHandler.js")
-        const localSettings = settingsHandler.loadSettings("settings_local.json")
-        const globalSettingsPath = localSettings[0].globalSettingsPath
-        const globalSettings = settingsHandler.loadSettings(globalSettingsPath)
-        const oldFilePaths = globalSettings[0].filePaths
-
-        document.getElementById("fileReplace").addEventListener('submit', (event) => {
-            event.preventDefault()
-            debugger
-            const activeFile = document.querySelector('#activeFile').innerHTML
-            // TODO need to connect active filebutton ID to prop below, above code is wrong!
-            for (const prop in globalSettings[0].filePaths){
-                if(prop === activeFile){
-                    prop = activeFile
-                }
-            }
-
-            settingsHandler.saveSettings(globalSettings,globalSettingsPath)
-            populateFiles.populate()
-        });
     </script>
 
     <!--PDF SCRIPT-->
