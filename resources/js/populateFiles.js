@@ -1,18 +1,18 @@
 const settingsHandler = require("./settingsHandler.js")
-const localSettings = settingsHandler.loadSettings("settings_local.json")
-const globalSettingsPath = localSettings[0].globalSettingsPath
+const path = require('path');
 
 const populate = () => {
-    const linkButtons = document.querySelectorAll('a[filePath]')
-    const globalSettings = settingsHandler.loadSettings(globalSettingsPath)
-    const keys = Object.keys(globalSettings[0].filePaths)
-    const paths = Object.values(globalSettings[0].filePaths)
+     localSettings = settingsHandler.loadSettings("./settings_local.json")
+     globalSettingsPath = path.resolve(__dirname, localSettings.globalSettingsPath)
+     globalSettings = settingsHandler.loadSettings(globalSettingsPath) 
+     linkFileButtons = document.querySelectorAll('a[filePath]')
+     linkFolderButtons = document.querySelectorAll('a[folderPath]')
 
-    for (let i = 0; i < linkButtons.length; i++) {
 
-        for (let j = 0; j < keys.length; j++) {
-            if(linkButtons[i].id === keys[j]){
-                linkButtons[i].setAttribute('filePath', paths[j])
+    for (let i = 0; i < linkFileButtons.length; i++) {
+        for (let j = 0; j < globalSettings.files.length; j++) {
+            if(linkFileButtons[i].id === globalSettings.files[j].id){
+                linkFileButtons[i].setAttribute('filePath', globalSettings.files[j].filePath)
             }   
         }
     }

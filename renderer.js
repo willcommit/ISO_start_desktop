@@ -4,7 +4,7 @@ const { dialog } = require('electron').remote
 const settingsHandler = require("./resources/js/settingsHandler.js")
 
 const localSettings = settingsHandler.loadSettings("settings_local.json")
-const globalSettingsPath = localSettings[0].globalSettingsPath
+const globalSettingsPath = localSettings.globalSettingsPath
 const globalSettings = settingsHandler.loadSettings(globalSettingsPath)
 
 class File {
@@ -43,10 +43,11 @@ for (i = 0; i < listButtons.length; i++) {
             viewerEle.appendChild(iframe)     
 
         } else if (event.target.getAttribute('folderPath')){
-           
+            debugger
             if(!shell.openItem(event.target.getAttribute('folderPath'))){
                 dialog.showMessageBox(options, i => console.log(i))
             }else{
+                
                 shell.openItem(event.target.getAttribute('folderPath'))
             }
             
@@ -59,12 +60,9 @@ for (i = 0; i < listButtons.length; i++) {
 
 document.getElementById("fileReplace").addEventListener('submit', (event) => {
     event.preventDefault()
-    const keys = Object.keys(globalSettings[0].filePaths)
-    debugger
-    //TODO remake settingsfile!
-    for (let i = 0; i < keys.length; i++) {
-        if(keys[i] === activeFile.id){
-            globalSettings[0].filePaths[i+1] = event.target[0].files[0].path
+    for (let i = 0; i < globalSettings.files.length; i++) {
+        if(globalSettings.files[i].id === activeFile.id){
+            globalSettings.files[i].filePath = event.target[0].files[0].path
         }
     }
     settingsHandler.saveSettings(globalSettings,globalSettingsPath)
