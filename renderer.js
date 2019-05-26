@@ -56,7 +56,10 @@ for (i = 0; i < listButtons.length; i++) {
         }       
     })
 }
-      
+
+document.getElementById("customFile").addEventListener('change', (event) => {
+    document.getElementById("custom-file-label").innerHTML = event.target.files[0].name
+})
 
 document.getElementById("fileReplace").addEventListener('submit', (event) => {
     event.preventDefault()
